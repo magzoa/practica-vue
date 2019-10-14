@@ -1,29 +1,23 @@
 <template>
-  <div class="galeria">
-   <div class="container mt-4">
-     <div class="row">
-       <div class="col-sm-8 col-12">
-         <img :src="selectedImage.imageLink" class="img-fluid">
-       </div>
-       <div class="col-sm-4 col-12">
-         <h1>{{selectedImage.title}}</h1>
-         <p>{{selectedImage.description}}</p>
-       </div>
-     </div>
+  <div class="gallery container mt-4">
 
-    <div class="row">
-     <div v-for="image in images" :key="image.id" class="col-md-3 col-sm-4 col-6"><a href="#" v-on:click="showImage(image)"><img class="img-fluid" v-bind:src="image.thumbnail" /></a></div>
+    <image-list :images="images"></image-list>
 
-    </div>
-   </div>
   </div>
+
+
 </template>
 
 <script>
+
+import ImageList from './ImageList';
+
 export default {
+name:'galeria',
+components:{ImageList},
+
   data () {
     return {
-      selectedImage: '',
       images: [
         {id: 1, title: 'Primera Imagen', description: 'Descripción Primera Imagen', thumbnail: 'https://videotutoriales.com/egipto01.png', imageLink: 'https://videotutoriales.com/egipto01b.png'},
         {id: 2, title: 'Segunda Imagen', description: 'Descripción Segunda Imagen', thumbnail: 'https://videotutoriales.com/egipto02.png', imageLink: 'https://videotutoriales.com/egipto02b.png'},
@@ -36,12 +30,7 @@ export default {
 ]
     }
  
-  },
-  methods: {
-            showImage: function (image) {
-                this.selectedImage = image
-            }
-        }
+  }
     }
 
 </script>
