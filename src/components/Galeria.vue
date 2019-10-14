@@ -1,7 +1,8 @@
 <template>
   <div class="gallery container mt-4">
 
-    <image-list :images="images"></image-list>
+    <single-image :selectedImage="selectedImage"></single-image>
+    <image-list :images="images" @emitImage="showImage"></image-list>
 
   </div>
 
@@ -11,13 +12,15 @@
 <script>
 
 import ImageList from './ImageList';
+import SingleImage from './SingleImage';
 
 export default {
 name:'galeria',
-components:{ImageList},
+components:{SingleImage,ImageList},
 
   data () {
     return {
+      selectedImage:'',
       images: [
         {id: 1, title: 'Primera Imagen', description: 'Descripción Primera Imagen', thumbnail: 'https://videotutoriales.com/egipto01.png', imageLink: 'https://videotutoriales.com/egipto01b.png'},
         {id: 2, title: 'Segunda Imagen', description: 'Descripción Segunda Imagen', thumbnail: 'https://videotutoriales.com/egipto02.png', imageLink: 'https://videotutoriales.com/egipto02b.png'},
@@ -30,6 +33,11 @@ components:{ImageList},
 ]
     }
  
+  },
+  methods:{
+    showImage:function(image){
+      this.selectedImage=image
+    }
   }
     }
 
